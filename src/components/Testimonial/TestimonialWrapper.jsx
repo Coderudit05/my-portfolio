@@ -21,8 +21,8 @@ const TestimonialWrapper = () => {
   }, []);
 
   return (
-    <div className="p-8 max-w-5xl mx-auto">
-      <h1 className="text-5xl md:text-6xl font-bold text-center mb-10">
+    <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-8 sm:mb-10">
         Testimonials
       </h1>
       <TestimonialForm />

@@ -44,58 +44,31 @@ function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-[#0a0e27] text-white py-20 px-8 relative overflow-hidden flex items-center justify-center">
+    <section className="min-h-screen bg-[#0a0e27] text-white py-20 px-4 sm:px-8 relative overflow-hidden flex items-center justify-center">
       {/* Toast Notification - Top Right */}
       {status && (
-        <div className="fixed top-8 right-8 z-50 toast-enter">
-          <div className={`px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 min-w-[300px] ${
+        <div className="fixed top-4 right-4 sm:top-8 sm:right-8 z-50 toast-enter max-w-[90%] sm:max-w-none">
+          <div className={`px-4 sm:px-6 py-3 sm:py-4 rounded-lg shadow-2xl flex items-center gap-2 sm:gap-3 min-w-[250px] sm:min-w-[300px] ${
             status.includes('✅') 
               ? 'bg-green-500/90 backdrop-blur-sm border border-green-400' 
               : 'bg-red-500/90 backdrop-blur-sm border border-red-400'
           }`}>
-            <span className="text-2xl">
+            <span className="text-xl sm:text-2xl">
               {status.includes('✅') ? '✅' : '❌'}
             </span>
-            <span className="text-white font-semibold flex-1">
+            <span className="text-white font-semibold flex-1 text-sm sm:text-base">
               {status.replace('✅', '').replace('❌', '').trim()}
             </span>
           </div>
         </div>
       )}
 
-      {/* Floating blue dots */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        {[...Array(12)].map((_, i) => {
-          const left = Math.random() * 90 + 2;
-          const top = Math.random() * 80 + 5;
-          const size = Math.random() * 18 + 10;
-          const delay = i * 0.7 + "s";
-          return (
-            <div
-              key={i}
-              className="contact-animate-dot absolute bg-blue-400/70 rounded-full"
-              style={{
-                left: `${left}%`,
-                top: `${top}%`,
-                width: `${size}px`,
-                height: `${size}px`,
-                animationDelay: delay,
-                filter: "blur(0.5px)",
-              }}
-            />
-          );
-        })}
-      </div>
-
-      {/* Animated blue waves */}
-      <div className="contact-animate-wave"></div>
-
       <div className="w-full max-w-2xl mx-auto z-10">
-        <div className="text-center mb-10">
-          <h2 className="text-5xl md:text-6xl font-bold text-blue-400 mb-4">
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-400 mb-3 sm:mb-4">
             Contact Me
           </h2>
-          <p className="text-gray-300 text-lg max-w-xl mx-auto">
+          <p className="text-gray-300 text-base sm:text-lg max-w-xl mx-auto px-4">
             Have a question, project, or just want to say hi? Fill out the form
             below and I'll get back to you soon!
           </p>
@@ -104,10 +77,10 @@ function Contact() {
         {/* ✅ Correct placement of onSubmit */}
         <form
           onSubmit={handleSubmit}
-          className="bg-[#181c2f] rounded-2xl shadow-lg shadow-blue-500/10 p-8 flex flex-col gap-6"
+          className="bg-[#181c2f] rounded-2xl shadow-lg shadow-blue-500/10 p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6"
         >
           <div>
-            <label htmlFor="name" className="block text-lg font-semibold mb-2 text-blue-300">
+            <label htmlFor="name" className="block text-base sm:text-lg font-semibold mb-2 text-blue-300">
               Name
             </label>
             <input
@@ -117,13 +90,13 @@ function Contact() {
               onChange={handleChange}
               id="name"
               required
-              className="w-full px-4 py-3 rounded-lg bg-[#101325] text-white border border-blue-500/30 focus:border-blue-400 outline-none transition"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-[#101325] text-white text-sm sm:text-base border border-blue-500/30 focus:border-blue-400 outline-none transition"
               placeholder="Your Name"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-lg font-semibold mb-2 text-blue-300">
+            <label htmlFor="email" className="block text-base sm:text-lg font-semibold mb-2 text-blue-300">
               Email
             </label>
             <input
@@ -134,12 +107,12 @@ function Contact() {
               placeholder="Enter your email"
               required
               id="email"
-              className="w-full px-4 py-3 rounded-lg bg-[#101325] text-white border border-blue-500/30 focus:border-blue-400 outline-none transition"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-[#101325] text-white text-sm sm:text-base border border-blue-500/30 focus:border-blue-400 outline-none transition"
             />
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-lg font-semibold mb-2 text-blue-300">
+            <label htmlFor="message" className="block text-base sm:text-lg font-semibold mb-2 text-blue-300">
               Message
             </label>
             <textarea
@@ -149,7 +122,7 @@ function Contact() {
               onChange={handleChange}
               rows={5}
               required
-              className="w-full px-4 py-3 rounded-lg bg-[#101325] text-white border border-blue-500/30 focus:border-blue-400 outline-none transition resize-none"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg bg-[#101325] text-white text-sm sm:text-base border border-blue-500/30 focus:border-blue-400 outline-none transition resize-none"
               placeholder="Type your message..."
             ></textarea>
           </div>
@@ -157,7 +130,7 @@ function Contact() {
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all duration-300 shadow-md shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg transition-all duration-300 shadow-md shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Sending..." : "Send Message"}
           </button>

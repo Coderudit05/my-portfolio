@@ -63,7 +63,7 @@ function Work() {
   ];
 
   return (
-    <section className="min-h-screen bg-[#0a0520] text-white py-20 px-8 relative overflow-hidden">
+    <section className="min-h-screen bg-[#0a0520] text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 relative overflow-hidden">
       {/* ========================================
           ANIMATED HEXAGON BACKGROUND
           ======================================== */}
@@ -123,11 +123,11 @@ function Work() {
       {/* ========================================
           SECTION HEADING
           ======================================== */}
-      <div className="relative z-10 text-center mb-16">
-        <h2 className="text-5xl md:text-6xl font-bold text-purple-400 mb-4">
+      <div className="relative z-10 text-center mb-10 sm:mb-12 md:mb-16">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-purple-400 mb-3 sm:mb-4">
           My Projects
         </h2>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto px-4">
           Here are some of my recent projects that showcase my skills and creativity
         </p>
       </div>
@@ -135,7 +135,7 @@ function Work() {
       {/* ========================================
           PROJECTS GRID
           ======================================== */}
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {projectsData.map((project) => (
           <div
             key={project.id}
@@ -148,24 +148,24 @@ function Work() {
                 alt={project.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a2e] to-transparent opacity-60"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-[#1a1a2e] to-transparent opacity-60"></div>
             </div>
 
             {/* Project Content */}
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-purple-400 mb-3">
+            <div className="p-4 sm:p-5 md:p-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-purple-400 mb-2 sm:mb-3">
                 {project.title}
               </h3>
-              <p className="text-gray-300 mb-4 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 leading-relaxed">
                 {project.description}
               </p>
 
               {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
                 {project.techStack.map((tech, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30"
+                    className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30"
                   >
                     {tech}
                   </span>
@@ -173,24 +173,24 @@ function Work() {
               </div>
 
               {/* Links */}
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4 flex-wrap">
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-purple-500/20 hover:bg-purple-500/40 text-purple-300 rounded-lg transition-all duration-300 border border-purple-500/30 hover:border-purple-400"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-500/20 hover:bg-purple-500/40 text-purple-300 rounded-lg transition-all duration-300 border border-purple-500/30 hover:border-purple-400"
                 >
-                  <FaGithub />
-                  <span className="text-sm font-semibold">Code</span>
+                  <FaGithub className="text-sm sm:text-base" />
+                  <span className="text-xs sm:text-sm font-semibold">Code</span>
                 </a>
                 <a
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-all duration-300 shadow-md shadow-purple-500/20"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-all duration-300 shadow-md shadow-purple-500/20"
                 >
-                  <FaExternalLinkAlt />
-                  <span className="text-sm font-semibold">Demo</span>
+                  <FaExternalLinkAlt className="text-sm sm:text-base" />
+                  <span className="text-xs sm:text-sm font-semibold">Demo</span>
                 </a>
               </div>
             </div>

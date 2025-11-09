@@ -7,10 +7,22 @@ function Navbar() {
 
   // Handle scroll shadow effect
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50); // that means ke jab user scroll karega 50px se zyada to shadow aa jayega
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
 
   // Menu handlers
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -31,10 +43,10 @@ function Navbar() {
 
   return (
     <nav
-      className={`text-white py-4 px-8 flex justify-between items-center fixed w-full top-0 z-50 transition-all duration-500 ${
+      className={`text-white py-4 px-4 sm:px-8 flex justify-between items-center fixed w-full top-0 z-50 transition-all duration-500 will-change-transform ${
         isScrolled
-          ? "bg-gradient-to-r from-[#050414]/95 via-[#0a0a1a]/90 to-[#050414]/95 border-b border-gray-700 backdrop-blur-md shadow-md"
-          : ""
+          ? "bg-linear-to-r from-[#050414]/95 via-[#0a0a1a]/90 to-[#050414]/95 border-b border-gray-700 backdrop-blur-md shadow-md"
+          : "bg-[#050414]/80"
       }`}
     >
       {/* Logo */}
@@ -53,13 +65,13 @@ function Navbar() {
       </NavLink>
 
       {/* Desktop Navigation */}
-      <div className="hidden lg:flex gap-10 xl:gap-12">
+      <div className="hidden lg:flex gap-4 xl:gap-8 2xl:gap-12">
         {navLinks.map((link) => (
           <NavLink
             key={link.path}
             to={link.path}
             className={({ isActive }) =>
-              `transition duration-200 ${
+              `transition duration-200 text-sm xl:text-base whitespace-nowrap ${
                 isActive
                   ? "text-blue-400 border-b-2 border-blue-400 pb-1"
                   : "hover:text-blue-400"
@@ -75,11 +87,12 @@ function Navbar() {
       {/* Hamburger Menu Button */}
       <button
         onClick={toggleMobileMenu}
-        className="lg:hidden z-50 flex flex-col gap-1.5 w-8 h-8 justify-center items-center focus:outline-none"
+        className="lg:hidden z-50 flex flex-col gap-1.5 w-8 h-8 justify-center items-center focus:outline-none touch-manipulation"
         aria-label="Toggle menu"
+        aria-expanded={isMobileMenuOpen}
       >
         <span
-          className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+          className={`w-6 h-0.5 bg-white transition-all duration-300 will-change-transform ${
             isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
           }`}
         ></span>
@@ -89,7 +102,7 @@ function Navbar() {
           }`}
         ></span>
         <span
-          className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+          className={`w-6 h-0.5 bg-white transition-all duration-300 will-change-transform ${
             isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
           }`}
         ></span>
@@ -97,18 +110,19 @@ function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-screen w-64 bg-[#0a0a1a]/95 backdrop-blur-xl border-l border-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 right-0 h-screen w-64 bg-[#0a0a1a]/95 backdrop-blur-xl border-l border-gray-700 shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden will-change-transform ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ zIndex: 45 }}
       >
-        <div className="flex flex-col gap-6 pt-24 px-8">
+        <div className="flex flex-col gap-6 pt-24 px-8 overflow-y-auto h-full">
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
               to={link.path}
               onClick={closeMobileMenu}
               className={({ isActive }) =>
-                `text-lg transition py-2 ${
+                `text-lg transition-all duration-200 py-2 touch-manipulation ${
                   isActive
                     ? "text-blue-400 border-l-4 border-blue-400 pl-4"
                     : "hover:text-blue-400 hover:pl-4"
@@ -132,4 +146,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbar

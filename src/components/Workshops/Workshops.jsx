@@ -42,37 +42,38 @@ function Workshops() {
   ];
 
   return (
-    <section className="min-h-screen bg-[#050414] text-white py-20 px-8">
+    <section className="min-h-screen bg-[#050414] text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-4">Workshops & Bootcamps</h1>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto mb-6"></div>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-3 sm:mb-4">Workshops & Bootcamps</h1>
+          <div className="w-16 sm:w-20 h-1 bg-linear-to-r from-blue-400 to-blue-600 mx-auto mb-4 sm:mb-6"></div>
+          <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto px-4">
             A collection of <span className="text-blue-400 font-semibold">offline workshops</span> 
             and <span className="text-blue-400 font-semibold">interactive sessions</span> 
-            I conducted in collaboration with{" "}
-            <span className="text-blue-400 font-semibold">Aman Pandey Sir</span>, 
-            Founder & CEO of <span className="text-blue-400">Codewave Solution</span>.
+            I conducted at various colleges in collaboration with{" "}
+            <span className="text-blue-400 font-semibold">Codewave Solution</span>, alongside{" "}
+            <span className="text-blue-400 font-semibold">Aman Pandey Sir</span> 
+            (Founder & CEO).
           </p>
         </div>
 
         {/* Workshop Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {workshops.map((workshop) => (
             <Link
               key={workshop.id}
               to={workshop.link}
-              className="group bg-[#0a0e27] border border-gray-700 rounded-xl p-8 hover:border-blue-500 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
+              className="group bg-[#0a0e27] border border-gray-700 rounded-xl p-5 sm:p-6 md:p-8 hover:border-blue-500 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
             >
-              <h2 className="text-2xl font-semibold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+              <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2 sm:mb-3 group-hover:text-blue-400 transition-colors duration-300">
                 {workshop.title}
               </h2>
-              <p className="text-gray-400 text-lg mb-2">{workshop.location}</p>
-              <p className="text-sm text-gray-500 italic">
-                Conducted in collaboration with Codewave Solution
+              <p className="text-gray-400 text-base sm:text-lg mb-2">{workshop.location}</p>
+              <p className="text-xs sm:text-sm text-gray-500 italic">
+                In collaboration with Codewave Solution
               </p>
-              <p className="mt-4 text-blue-400 text-sm font-semibold group-hover:underline">
+              <p className="mt-3 sm:mt-4 text-blue-400 text-xs sm:text-sm font-semibold group-hover:underline">
                 View Workshop →
               </p>
             </Link>
